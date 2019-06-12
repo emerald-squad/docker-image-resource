@@ -45,6 +45,10 @@ else
   registry=
 fi
 
+if [ -z "$registry_mirror" ]; then 
+  registry_mirror="$(cat "/opt/resource/defaultMirror" || true)"
+fi
+
 certs_to_file "$ca_certs"
 set_client_certs "$client_certs"
 start_docker \

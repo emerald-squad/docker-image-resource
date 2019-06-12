@@ -45,6 +45,10 @@ else
   registry=
 fi
 
+if [ -z "$registry_mirror" ]; then 
+  registry_mirror="$(cat "/opt/resource/defaultMirror" || true)"
+fi
+
 digest="$(jq -r '.version.digest' < $payload)"
 
 rootfs="$(jq -r '.params.rootfs // false' < $payload)"
